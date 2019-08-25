@@ -1,10 +1,10 @@
-# App de Podcasts de Platzi
+# App de Podcasts 
 
-App de Podcasts integrada con la API de AudioBoom para aprender Next.JS
+Podcasts app, implement with AudiBoom API , ReactJs and Server Side Rending ( SSR ) with Next.Js.
 
 ![Captura de la App](./.readme-static/captura.png)
 
-## ¿Cómo funciona?
+## How it works?
 
 Requiere Node.JS 10
 
@@ -12,6 +12,6 @@ Requiere Node.JS 10
 * `npm run dev` para el entorno de desarrollo.
 * `npm run build && npm start` para el entorno de producción.
 
-## Licencia
+## Licence
 
 MIT
