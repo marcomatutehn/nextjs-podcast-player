@@ -1,4 +1,4 @@
-# App de Podcasts 
+# Podcast App
 
 Podcasts app, implement with AudiBoom API , ReactJs and Server Side Rending ( SSR ) with Next.Js.
 

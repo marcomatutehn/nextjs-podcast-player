@@ -4,8 +4,8 @@ var clientOverlay = document.createElement('div');
 clientOverlay.id = 'webpack-hot-middleware-clientOverlay';
 var styles = {
   background: 'rgba(0,0,0,0.85)',
-  color: '#E8E8E8',
-  lineHeight: '1.2',
+  color: '#e8e8e8',
+  lineHeight: '1.6',
   whiteSpace: 'pre',
   fontFamily: 'Menlo, Consolas, monospace',
   fontSize: '13px',
@@ -18,31 +18,26 @@ var styles = {
   bottom: 0,
   overflow: 'auto',
   dir: 'ltr',
-  textAlign: 'left'
+  textAlign: 'left',
 };
-for (var key in styles) {
-  clientOverlay.style[key] = styles[key];
-}
 
 var ansiHTML = require('ansi-html');
 var colors = {
   reset: ['transparent', 'transparent'],
   black: '181818',
-  red: 'E36049',
-  green: 'B3CB74',
-  yellow: 'FFD080',
-  blue: '7CAFC2',
-  magenta: '7FACCA',
-  cyan: 'C3C2EF',
-  lightgrey: 'EBE7E3',
-  darkgrey: '6D7891'
+  red: 'ff3348',
+  green: '3fff4f',
+  yellow: 'ffd30e',
+  blue: '169be0',
+  magenta: 'f840b7',
+  cyan: '0ad8e9',
+  lightgrey: 'ebe7e3',
+  darkgrey: '6d7891',
 };
-ansiHTML.setColors(colors);
 
 var Entities = require('html-entities').AllHtmlEntities;
 var entities = new Entities();
 
-exports.showProblems =
 function showProblems(type, lines) {
   clientOverlay.innerHTML = '';
   lines.forEach(function(msg) {
@@ -55,25 +50,50 @@ function showProblems(type, lines) {
   if (document.body) {
     document.body.appendChild(clientOverlay);
   }
-};
+}
 
-exports.clear =
 function clear() {
   if (document.body && clientOverlay.parentNode) {
     document.body.removeChild(clientOverlay);
   }
-};
+}
 
-var problemColors = {
-  errors: colors.red,
-  warnings: colors.yellow
-};
-
-function problemType (type) {
+function problemType(type) {
+  var problemColors = {
+    errors: colors.red,
+    warnings: colors.yellow,
+  };
   var color = problemColors[type] || colors.red;
   return (
-    '<span style="background-color:#' + color + '; color:#fff; padding:2px 4px; border-radius: 2px">' +
-      type.slice(0, -1).toUpperCase() +
+    '<span style="background-color:#' +
+    color +
+    '; color:#000000; padding:3px 6px; border-radius: 4px;">' +
+    type.slice(0, -1).toUpperCase() +
     '</span>'
   );
 }
+
+module.exports = function(options) {
+  for (var color in options.ansiColors) {
+    if (color in colors) {
+      colors[color] = options.ansiColors[color];
+    }
+    ansiHTML.setColors(colors);
+  }
+
+  for (var style in options.overlayStyles) {
+    styles[style] = options.overlayStyles[style];
+  }
+
+  for (var key in styles) {
+    clientOverlay.style[key] = styles[key];
+  }
+
+  return {
+    showProblems: showProblems,
+    clear: clear,
+  };
+};
+
+module.exports.clear = clear;
+module.exports.showProblems = showProblems;
