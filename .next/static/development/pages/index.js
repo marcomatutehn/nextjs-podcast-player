@@ -14142,7 +14142,7 @@ routes.add('home', '/', 'index').add('channel', '/:slug.:id', 'channel').add('po
 
 /***/ }),
 
-/***/ 0:
+/***/ 2:
 /*!*******************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=%2FUsers%2Fmarcomartinez%2FWebstormProjects%2Fnextjs-podcast-player%2Fpages%2Findex.js ***!
   \*******************************************************************************************************************************************************/
@@ -14165,5 +14165,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[0,"static/runtime/webpack.js"]]]);
+},[[2,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map
